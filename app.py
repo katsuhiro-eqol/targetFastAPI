@@ -11,7 +11,7 @@ chat1 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0)
 chat2 = ChatOpenAI(model_name="ft:gpt-3.5-turbo-0613:personal::7yhcFCbA", temperature=0.4) #silva
 
 class UserInput(BaseModel):
-    input_variables: str
+    input: str
 
 app = FastAPI()
 
@@ -24,9 +24,9 @@ async def root(input: Union[str, None] = None):
     if input:       
         output = taskExplain(input)
         #print(taskYomi(output))
-        return {"解説":output}
+        return {"result":output}
     else:
-        return {"解説":"入力されていません"}
+        return {"result":"入力されていません"}
 
 @app.get("/memory")
 async def memory(input: Union[str, None] = None):
