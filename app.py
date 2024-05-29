@@ -13,7 +13,6 @@ chat2 = ChatOpenAI(model_name="ft:gpt-3.5-turbo-0613:personal::7yhcFCbA", temper
 class UserInput(BaseModel):
     input_variables: str
 
-
 app = FastAPI()
 
 @app.post("/")
