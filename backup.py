@@ -103,3 +103,17 @@ def taskMemory(input):
     print(llm_chain.invoke(input))
 
     return output
+
+    @app.post("/")
+async def answer(input:UserInput):
+    input=input.input
+    completion = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "system", "content": "あなたはAIアシスタントです。５０字以内で簡潔に回答してください。"},
+        {"role": "user", "content": input}
+    ]
+    )
+    output=completion.choices[0].message
+    print(output.content)
+    return {"result": output.content}
